@@ -49,10 +49,17 @@ Una landing page moderna y minimalista para la consultora de reclutamiento EMEDE
 
 ```
 landing-emede/
-├── index.html          # Página principal
-├── styles.css          # Estilos CSS
-├── script.js           # Funcionalidad JavaScript
-└── README.md           # Documentación
+├── index.html              # Página principal
+├── css/
+│   └── styles.css          # Estilos CSS
+├── js/
+│   └── script.js           # Funcionalidad JavaScript
+├── assets/
+│   ├── images/             # Imágenes del proyecto
+│   └── docs/               # Documentación de marca
+├── .git/                   # Control de versiones
+├── .gitattributes          # Configuración Git
+└── README.md               # Documentación del proyecto
 ```
 
 ## 🎯 Paleta de Colores Oficiales EMEDE
