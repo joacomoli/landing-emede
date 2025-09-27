@@ -563,21 +563,24 @@ function initScrollAnimations() {
     const observer = new IntersectionObserver(function(entries) {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
-                entry.target.style.opacity = '1';
-                entry.target.style.transform = 'translateY(0)';
+                entry.target.classList.add('animate');
+                
+                // Para servicios, agregar delay escalonado
+                if (entry.target.classList.contains('service-card')) {
+                    const cards = document.querySelectorAll('.service-card');
+                    const index = Array.from(cards).indexOf(entry.target);
+                    entry.target.style.animationDelay = `${index * 0.1}s`;
+                }
             }
         });
     }, observerOptions);
     
     // Elementos a animar
     const animatedElements = document.querySelectorAll(
-        '.service-card, .process-step, .contact-item, .stat, .about-text, .about-graphic'
+        '.service-card, .process-step, .contact-item, .stat, .about-text, .about-graphic, .team-member'
     );
     
     animatedElements.forEach(el => {
-        el.style.opacity = '0';
-        el.style.transform = 'translateY(30px)';
-        el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
         observer.observe(el);
     });
 }

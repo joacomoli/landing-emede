@@ -84,9 +84,15 @@ h1, h2, h3, h4, h5, h6 {
     margin: 0 auto;
     padding: 0 20px;
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
     height: 70px;
+    position: relative;
+}
+
+.nav-logo {
+    position: absolute;
+    left: 20px;
 }
 
 .nav-logo h1 {
@@ -97,6 +103,7 @@ h1, h2, h3, h4, h5, h6 {
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
+    margin: 0;
 }
 
 .nav-menu {
@@ -137,6 +144,8 @@ h1, h2, h3, h4, h5, h6 {
     display: none;
     flex-direction: column;
     cursor: pointer;
+    position: absolute;
+    right: 20px;
 }
 
 .bar {
@@ -207,79 +216,16 @@ h1, h2, h3, h4, h5, h6 {
     justify-content: center;
     box-shadow: var(--shadow-medium);
     animation: float 6s ease-in-out infinite;
-    padding: 40px;
+    padding: 20px;
+    overflow: hidden;
 }
 
-.puzzle-pieces {
-    display: flex;
-    align-items: center;
-    gap: 0;
-    position: relative;
-}
-
-.puzzle-piece {
-    width: 80px;
-    height: 80px;
-    background: var(--white);
-    border-radius: 12px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    box-shadow: var(--shadow-light);
-    transition: var(--transition);
-    position: relative;
-}
-
-.puzzle-piece:hover {
-    transform: scale(1.05);
-    box-shadow: var(--shadow-medium);
-}
-
-.person-piece {
-    border-top-right-radius: 0;
-    border-bottom-right-radius: 0;
-    margin-right: -5px;
-    z-index: 2;
-}
-
-.company-piece {
-    border-top-left-radius: 0;
-    border-bottom-left-radius: 0;
-    margin-left: -5px;
-    z-index: 1;
-}
-
-.person-icon i,
-.company-icon i {
-    font-size: 32px;
-    color: var(--primary-color);
-}
-
-.person-icon i {
-    color: var(--primary-color);
-}
-
-.company-icon i {
-    color: var(--accent-color);
-}
-
-/* Animación de conexión */
-.puzzle-pieces::after {
-    content: '';
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 2px;
-    height: 20px;
-    background: var(--primary-color);
-    opacity: 0.3;
-    animation: pulse 2s ease-in-out infinite;
-}
-
-@keyframes pulse {
-    0%, 100% { opacity: 0.3; transform: translate(-50%, -50%) scale(1); }
-    50% { opacity: 0.8; transform: translate(-50%, -50%) scale(1.2); }
+.puzzle-gif {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    border-radius: var(--border-radius);
+    display: block;
 }
 
 @keyframes float {
@@ -1230,6 +1176,10 @@ section {
     .nav-toggle {
         display: flex;
     }
+    
+    .nav-logo h1 {
+        font-size: 24px;
+    }
 
     .nav-toggle.active .bar:nth-child(2) {
         opacity: 0;
@@ -1404,11 +1354,44 @@ section {
 @keyframes fadeInUp {
     from {
         opacity: 0;
-        transform: translateY(30px);
+        transform: translateY(50px);
     }
     to {
         opacity: 1;
         transform: translateY(0);
+    }
+}
+
+@keyframes fadeInLeft {
+    from {
+        opacity: 0;
+        transform: translateX(-50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes fadeInRight {
+    from {
+        opacity: 0;
+        transform: translateX(50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes scaleIn {
+    from {
+        opacity: 0;
+        transform: scale(0.8);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
     }
 }
 
@@ -1442,6 +1425,79 @@ section {
     }
 }
 
+/* LinkedIn links for team members */
+.member-social {
+    margin-top: 20px;
+}
+
+.linkedin-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 20px;
+    background: var(--primary-color);
+    color: var(--white);
+    text-decoration: none;
+    border-radius: 25px;
+    font-size: 14px;
+    font-weight: 500;
+    transition: var(--transition);
+    border: 2px solid var(--primary-color);
+}
+
+.linkedin-link:hover {
+    background: transparent;
+    color: var(--primary-color);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-medium);
+}
+
+.linkedin-link i {
+    font-size: 16px;
+}
+
+/* WhatsApp Floating Button */
+.whatsapp-float {
+    position: fixed;
+    bottom: 100px;
+    right: 30px;
+    width: 60px;
+    height: 60px;
+    background: #25D366;
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    box-shadow: 0 4px 20px rgba(37, 211, 102, 0.3);
+    z-index: 1000;
+    transition: var(--transition);
+    animation: pulse-whatsapp 2s infinite;
+}
+
+.whatsapp-float:hover {
+    background: #128C7E;
+    transform: scale(1.1);
+    box-shadow: 0 6px 25px rgba(37, 211, 102, 0.4);
+}
+
+.whatsapp-float i {
+    font-size: 28px;
+}
+
+@keyframes pulse-whatsapp {
+    0% {
+        box-shadow: 0 4px 20px rgba(37, 211, 102, 0.3);
+    }
+    50% {
+        box-shadow: 0 4px 20px rgba(37, 211, 102, 0.6), 0 0 0 10px rgba(37, 211, 102, 0.1);
+    }
+    100% {
+        box-shadow: 0 4px 20px rgba(37, 211, 102, 0.3);
+    }
+}
+
 /* Focus visible para mejor accesibilidad */
 .btn:focus-visible,
 .nav-link:focus-visible,
@@ -1450,4 +1506,49 @@ textarea:focus-visible,
 button:focus-visible {
     outline: 2px solid var(--primary-color);
     outline-offset: 2px;
+}
+
+/* Animaciones de scroll */
+.scroll-animate {
+    opacity: 0;
+    transform: translateY(50px);
+    transition: all 0.8s ease-out;
+}
+
+.scroll-animate.animate {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.scroll-animate-left {
+    opacity: 0;
+    transform: translateX(-50px);
+    transition: all 0.8s ease-out;
+}
+
+.scroll-animate-left.animate {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+.scroll-animate-right {
+    opacity: 0;
+    transform: translateX(50px);
+    transition: all 0.8s ease-out;
+}
+
+.scroll-animate-right.animate {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+.scroll-animate-scale {
+    opacity: 0;
+    transform: scale(0.8);
+    transition: all 0.8s ease-out;
+}
+
+.scroll-animate-scale.animate {
+    opacity: 1;
+    transform: scale(1);
 }
